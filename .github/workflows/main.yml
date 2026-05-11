@@ -24,13 +24,12 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          # Мы не указываем версию жестко, чтобы он взял последнюю стабильную
 
       - name: Build APK
         run: |
-          # Флаг -y автоматически отвечает "Да" на установку SDK
-          flet build apk -y
-
+          # Используем флаг --no-interactive, чтобы не ждать нажатия "y"
+          flet build apk --no-interactive
+          
       - name: Upload APK
         if: success()
         uses: actions/upload-artifact@v4
